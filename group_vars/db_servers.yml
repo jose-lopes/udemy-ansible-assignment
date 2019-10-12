@@ -1,0 +1,9 @@
+---
+mysql_databases:
+   - name: employee_db
+
+mysql_users:
+  - name: db_user
+    password: "Passw0rd"
+    priv: '*.*:ALL'
+    host: '%'

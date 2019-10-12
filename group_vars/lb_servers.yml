@@ -1,0 +1,16 @@
+---
+haproxy_frontend_name: 'hafrontend'
+haproxy_frontend_bind_address: '*'
+haproxy_frontend_port: 80
+haproxy_frontend_mode: 'http'
+
+haproxy_backend_name: 'habackend'
+haproxy_backend_mode: 'http'
+haproxy_backend_balance_method: 'roundrobin'
+haproxy_backend_httpchk: ''
+
+haproxy_backend_servers:
+  - name: "{{groups['web_servers'][0]}}"
+    address: "{{hostvars[groups['web_servers'][0]]['ansible_host']}}:5000"
+  - name: "{{groups['web_servers'][1]}}"
+    address: "{{hostvars[groups['web_servers'][1]]['ansible_host']}}:5000"

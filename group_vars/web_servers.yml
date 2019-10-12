@@ -1,0 +1,2 @@
+---
+flask_web_mysql_host: "{{hostvars[groups['db_servers'][0]]['ansible_host'] }}"

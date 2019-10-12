@@ -1,0 +1,15 @@
+---
+- name: Install Python Flask Dependencies
+  pip:
+    name:
+      - flask
+      - flask-mysql
+    state: present
+
+- name: Get updated files from git repo
+  git:
+    repo: "{{flask_web_git_repo}}"
+    dest: "{{flask_web_repo_dest}}"
+
+- name: Start Web Server
+  shell: MYSQL_DATABASE_HOST={{flask_web_mysql_host}} FLASK_APP={{ flask_web_repo_dest }}/app.py nohup flask run --host=0.0.0.0 &

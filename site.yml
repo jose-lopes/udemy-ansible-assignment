@@ -1,0 +1,20 @@
+---
+- name: Install dependencies
+  hosts: db_servers,web_servers
+  roles:
+    - python
+
+- name: Setup database servers
+  hosts: db_servers
+  roles:
+    - geerlingguy.mysql
+
+- name: Setup web servers
+  hosts: web_servers
+  roles:
+    - flask_web
+
+- name: Setup load balancer
+  hosts: lb_servers
+  roles:
+    - geerlingguy.haproxy
