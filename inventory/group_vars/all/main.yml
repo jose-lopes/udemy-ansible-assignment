@@ -15,3 +15,15 @@ heat_image: "debian-9.9.1"
 heat_key_name: "ansible-test"
 heat_network: "vlan175"
 heat_api_version: 3
+
+# Information about web external ip
+web_external_ip: "{{hostvars[groups['lb_servers'][0]]['ansible_host']}}"
+notification_subject: "Ansible Report - Web Application"
+notification_body: >
+  Hello!
+
+  Ansible playbook for Udemy Ansible Assignment was executed.
+  Go to http://{{ web_external_ip }} to access the web application.
+
+  Thanks.
+

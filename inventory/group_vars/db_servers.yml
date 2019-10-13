@@ -4,6 +4,6 @@ mysql_databases:
 
 mysql_users:
   - name: db_user
-    password: "Passw0rd"
+    password: "{{vault_mysql_user_password}}"
     priv: '*.*:ALL'
     host: '%'

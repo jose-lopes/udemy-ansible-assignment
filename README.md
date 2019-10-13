@@ -17,9 +17,10 @@ I am using Arch Linux at my workstation, so I used my workstation to execute the
 
 ## Ansible Project
 
-I have two playbooks:
+I have three playbooks:
 * **deploy-instances.yml** : create instances on Openstack Private Cloud
 * **site.yml** : install and configure the project of web platform
+* **send-email.yml** : send notification email after finish (this is imported by site.yml). This playbook will ask for from email and password to send notification.
 
 On the playbooks I used the next roles:
 
@@ -33,6 +34,12 @@ The inventory is dynamic and it is the folder inventory with next structure:
 * **openstack_inventory.py**: Script to get host information from Openstack Private Cloud. More information at [Working with dynamic inventory : Openstack](https://docs.ansible.com/ansible/latest/user_guide/intro_dynamic_inventory.html#explicit-use-of-openstack-inventory-script). The file openstack.yml is a configuration used by this script.
 * **hosts** : have the groups defined at playbook's with the instances
 * **group_vars**: configuration of the installed environment.
+
+The groups of instances that we identified are:
+* **db_servers**: servers with mysql database.
+* **web_servers**: servers with web application
+* **lb_servers**: load balancers that balances to web_servers.
+
 
 ## General Thanks
 

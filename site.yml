@@ -18,3 +18,5 @@
   hosts: lb_servers
   roles:
     - geerlingguy.haproxy
+
+- import_playbook: send-email.yml

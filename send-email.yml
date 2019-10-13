@@ -1,0 +1,19 @@
+---
+- name: Send notification email
+  hosts: localhost
+  vars_prompt:
+    - name: "mail_username"
+      prompt: "What it is the from email to send notification?"
+      private: no
+    - name: "mail_password"
+      prompt: "What it is the password?"
+  tasks:
+    - name: "Send notification email"
+      mail:
+        host: smtp.gmail.com
+        port: 465
+        username: "{{mail_username}}"
+        password: "{{mail_password}}"
+        to: Jose Lopes <jlopes.dev@gmail.com>
+        subject: "{{notification_subject}}"
+        body: '{{notification_body}}'
