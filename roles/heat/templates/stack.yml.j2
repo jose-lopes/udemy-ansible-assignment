@@ -1,0 +1,33 @@
+heat_template_version: 2016-04-08
+
+description: Instances
+
+resources:
+  {{heat_stack_name}}_internal:
+    type: OS::Neutron::SecurityGroup
+    properties:
+      name: "{{heat_stack_name}}_internal_and_web"
+      description: "internal and web"
+      rules:
+      - {direction: egress, ethertype: IPv4}
+      - {direction: egress, ethertype: IPv6}
+      - {direction: ingress, ethertype: IPv4, protocol: icmp, remote_ip_prefix: 0.0.0.0/0}
+      - {direction: ingress, ethertype: IPv4, protocol: tcp, remote_ip_prefix: 192.168.0.0/16}
+      - {direction: ingress, ethertype: IPv4, protocol: tcp, port_range_min: 80, port_range_max: 80, remote_ip_prefix: 0.0.0.0/0}
+
+{% for gserver in heat_groups  %}
+{% for server in groups[gserver]  %}
+  {{server}}:
+    type: OS::Nova::Server
+    depends_on: {{heat_stack_name}}_internal
+    properties:
+      name: {{server}}
+      flavor: {{heat_flavor}}
+      image: {{heat_image}}
+      key_name: {{heat_key_name}}
+      networks:
+        - network: {{heat_network}}
+      security_groups:
+        - {{heat_stack_name}}_internal_and_web
+{% endfor %}
+{% endfor %}

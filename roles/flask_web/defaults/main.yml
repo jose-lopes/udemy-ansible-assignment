@@ -2,4 +2,3 @@
 flask_web_git_repo: "https://github.com/mmumshad/simple-webapp.git"
 flask_web_repo_dest: "/opt/simple-webapp"
 flask_web_mysql_host: ''
-

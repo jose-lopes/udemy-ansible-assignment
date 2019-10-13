@@ -1,0 +1,10 @@
+[web_servers]
+ans-web2
+ans-web1
+
+[db_servers]
+ans-db1
+
+[lb_servers]
+ans-lb1
+

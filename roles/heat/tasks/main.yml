@@ -1,0 +1,11 @@
+---
+- name: Create stack file
+  template:
+    src: stack.yml.j2
+    dest: stack.yml
+  register: stack
+- name: Create stack
+  os_stack:
+    name: "{{heat_stack_name}}"
+    state: present
+    template: "stack.yml"

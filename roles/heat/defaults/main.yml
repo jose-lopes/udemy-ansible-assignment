@@ -1,0 +1,6 @@
+---
+heat_stack_name: "heat"
+heat_flavor: "flvC1M1D10"
+heat_image: "debian-9.9.1"
+heat_key_name: "ansible-test"
+heat_network: "vlan175"

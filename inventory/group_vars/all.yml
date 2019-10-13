@@ -1,0 +1,16 @@
+---
+# Configuration to access VMs
+ansible_user: "debian"
+ansible_become: true
+ansible_ssh_private_key_file: "~/.ssh/keys/ansible-test.pem"
+
+# Configurations to create VMs
+heat_stack_name: "udemy-ansible"
+heat_groups:
+  - db_servers
+  - lb_servers
+  - web_servers
+heat_flavor: "flvC1M1D10"
+heat_image: "debian-9.9.1"
+heat_key_name: "ansible-test"
+heat_network: "vlan175"

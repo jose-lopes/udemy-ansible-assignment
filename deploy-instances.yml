@@ -1,0 +1,7 @@
+---
+- name: Create Instances
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  roles:
+    - heat
